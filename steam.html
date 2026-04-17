@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <style>
+        body {
+            margin: 0; /* 移除瀏覽器預設的 8px 外距 */
+            background-color: #000
+        }
+        img {
+            display: block; /* 移除圖片下方的微小空隙 */
+            width: 100%;    /* 讓圖片寬度撐滿畫面（視需求調整） */
+            height: auto;
+        }
+        .input-overlay {
+            box-sizing: border-box;
+            color: #ffffff;
+            position: absolute;
+            bottom: 535px; 
+            right: 878px;   
+            border: none;    /* 移除平常看到的灰色邊框 */
+            outline: none;
+            font-size: 15px;
+            caret-color:#ffffff;
+            background-color: #32353C;
+            height: 37px;
+            width: 397px;
+            padding: 10px;
+            z-index:100;
+        }
+        .input-overlay:hover {
+            background-color: #393C44; /* 變淺一點的灰色 */
+        }
+        .input-overlay123 {
+            box-sizing: border-box;
+            color: #ffffff;
+            position: absolute;
+            bottom: 463px; 
+            right: 878px;   
+            border: none;    /* 移除平常看到的灰色邊框 */
+            outline: none;
+            font-size: 15px;
+            caret-color:#ffffff;
+            background-color: #32353C;
+            height: 37px;
+            width: 397px;
+            padding: 10px;
+            z-index:100;
+        }
+        .input-overlay123:hover {
+            background-color: #393C44; /* 變淺一點的灰色 */
+        }
+        .input_img{
+            z-index:2;
+            position: absolute;
+            bottom: 286px; 
+            right: 603px;
+            width: 700px;  /* 這裡改小，例如 100px 或 50px */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="input.png" class="input_img">
+    <img src="img.png">
+    <input type="text" class="input-overlay">
+    <input type="password" class="input-overlay123">
+</body>
+</html>
