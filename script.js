@@ -14,11 +14,5 @@ document.getElementById("submit-form").addEventListener("submit", function(e) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             })
-            .then(response => {
-                if (response.ok) {
-                    this.reset();
-                    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-                }
-            })
             .catch(error => console.error('Error:', error));
         });
